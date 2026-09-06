@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://noco-google-connector.deepcraftstudio.com/sitemap.xml
+Sitemap: https://noco-google-connector.pavel-usanli.online/sitemap.xml
