@@ -26,8 +26,10 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Static site files
-COPY --chown=nginx:nginx *.html /usr/share/nginx/html/
+# Static site files. robots.txt and sitemap.xml are served too: robots.txt
+# advertises the sitemap URL, so shipping one without the other points
+# crawlers at a 404.
+COPY --chown=nginx:nginx *.html robots.txt sitemap.xml /usr/share/nginx/html/
 
 EXPOSE 80
 

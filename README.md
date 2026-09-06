@@ -1,7 +1,7 @@
 # google-connector — website
 
 Static landing page, privacy policy and terms of service for the **Google Connector**
-NocoBase plugin, served at <https://noco-ai-tools.pavel-usanli.online/>.
+NocoBase plugin, served at <https://noco-google-connector.deepcraftstudio.com/>.
 
 The plugin itself has moved to
 [kalpak44/deepcraft-nocobase](https://github.com/kalpak44/deepcraft-nocobase/tree/main/plugins/plugin-noco-google-connector)
