@@ -1,6 +1,6 @@
-# noco-ai-tools — website
+# google-connector — website
 
-Static landing page, privacy policy and terms of service for the **Noco AI Tools**
+Static landing page, privacy policy and terms of service for the **Google Connector**
 NocoBase plugin, served at <https://noco-ai-tools.pavel-usanli.online/>.
 
 The plugin itself has moved to

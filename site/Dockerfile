@@ -12,9 +12,9 @@ ARG VCS_REF
 ARG VERSION
 
 LABEL org.opencontainers.image.title="noco-tools-site" \
-      org.opencontainers.image.description="Landing page for Noco AI Tools NocoBase plugin" \
-      org.opencontainers.image.url="https://github.com/kalpak44/plugin-noco-tools" \
-      org.opencontainers.image.source="https://github.com/kalpak44/plugin-noco-tools" \
+      org.opencontainers.image.description="Landing page for Google Connector NocoBase plugin" \
+      org.opencontainers.image.url="https://github.com/kalpak44/deepcraft-nocobase/tree/main/plugins/plugin-noco-google-connector" \
+      org.opencontainers.image.source="https://github.com/kalpak44/deepcraft-nocobase" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.revision="${VCS_REF}" \
