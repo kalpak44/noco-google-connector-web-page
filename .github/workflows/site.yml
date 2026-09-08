@@ -1,3 +1,14 @@
+# Managed by homelab-infra — terraform/github/plugin-noco-tools/workflows/site.yml
+# Edits made here in the target repo are overwritten by `just deploy github plugin-noco-tools`.
+#
+# The action versions here are bumped by hand. Dependabot cannot watch this file: it only
+# scans `.github/workflows/`, and in homelab-infra this is an ordinary file under
+# `terraform/`, so `github-actions` is deliberately absent from dependabot.yml.
+#
+# The four actions below are pinned to commit SHAs, not tags, so a retagged release
+# cannot change this build under us (CWE-829). That pin used to be maintained by the
+# `github-actions` Dependabot entry; now that this file is generated here, the SHAs are
+# bumped by hand in homelab-infra — see the note in dependabot.yml.
 name: site
 
 on:
