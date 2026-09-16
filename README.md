@@ -1,4 +1,4 @@
-# google-connector — website
+# noco-google-connector-web-page
 
 Static landing page, privacy policy and terms of service for the **Google Connector**
 NocoBase plugin, served at <https://noco-google-connector.pavel-usanli.online/>.
@@ -24,16 +24,17 @@ site/
 ## Local preview
 
 ```bash
-docker build -t noco-tools-site site
-docker run --rm -p 8080:80 noco-tools-site
+docker build -t noco-google-connector-web-page site
+docker run --rm -p 8080:80 noco-google-connector-web-page
 # http://localhost:8080
 ```
 
 ## Deploy
 
-`.github/workflows/site.yml` builds `site/` on every push to `main` that touches
-it and pushes the image to `ghcr.io/kalpak44/noco-tools-site`, tagged with the
-short commit SHA and `latest`.
+`.github/workflows/publish.yml` builds `site/` on every pull request and every push
+to `main` that touches it. A push publishes `ghcr.io/kalpak44/noco-google-connector-web-page`,
+tagged with the short commit SHA and `latest`, then triggers the cluster deploy; a pull
+request builds the image but publishes nothing.
 
 ## License
 
