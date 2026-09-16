@@ -1,8 +1,11 @@
-# ── build stage: validate HTML is well-formed ────────────────────────────────
+# ── validate stage: reject malformed markup before it can be served ──────────
+# runtime copies the pages from here rather than from the build context, which
+# is what forces this stage to run — BuildKit skips a stage nothing depends on.
 FROM node:22-alpine AS validate
 WORKDIR /src
-COPY . .
-RUN npx --yes html-validate "*.html" || true
+COPY .htmlvalidate.json ./
+COPY public/ ./public/
+RUN npx --yes html-validate "public/*.html"
 
 # ── runtime stage ─────────────────────────────────────────────────────────────
 FROM nginx:1.31-alpine AS runtime
@@ -11,10 +14,10 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 
-LABEL org.opencontainers.image.title="noco-tools-site" \
+LABEL org.opencontainers.image.title="noco-google-connector-web-page" \
       org.opencontainers.image.description="Landing page for Google Connector NocoBase plugin" \
-      org.opencontainers.image.url="https://github.com/kalpak44/deepcraft-nocobase/tree/main/plugins/plugin-noco-google-connector" \
-      org.opencontainers.image.source="https://github.com/kalpak44/deepcraft-nocobase" \
+      org.opencontainers.image.url="https://noco-google-connector.pavel-usanli.online/" \
+      org.opencontainers.image.source="https://github.com/kalpak44/noco-google-connector-web-page" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.revision="${VCS_REF}" \
@@ -24,12 +27,12 @@ LABEL org.opencontainers.image.title="noco-tools-site" \
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Static site files. robots.txt and sitemap.xml are served too: robots.txt
 # advertises the sitemap URL, so shipping one without the other points
 # crawlers at a 404.
-COPY --chown=nginx:nginx *.html robots.txt sitemap.xml /usr/share/nginx/html/
+COPY --from=validate --chown=nginx:nginx /src/public/ /usr/share/nginx/html/
 
 EXPOSE 80
 

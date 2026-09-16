@@ -11,15 +11,23 @@ website — issues and pull requests about plugin code belong in the new repo.
 ## Contents
 
 ```
-site/
-  index.html      landing page
-  privacy.html    privacy policy   (required for Google OAuth verification)
-  tos.html        terms of service (required for Google OAuth verification)
-  robots.txt
-  sitemap.xml
-  nginx.conf      nginx server config
-  Dockerfile      nginx:alpine image serving the pages
+site/                      docker build context
+  Dockerfile               nginx:alpine image serving the pages
+  .dockerignore
+  .htmlvalidate.json       markup rules the build enforces
+  public/                  everything served at the web root
+    index.html             landing page
+    privacy.html           privacy policy   (required for Google OAuth verification)
+    tos.html               terms of service (required for Google OAuth verification)
+    robots.txt
+    sitemap.xml
+  conf/
+    nginx.conf             nginx server config
 ```
+
+The build validates `public/*.html` and fails on malformed markup, so a broken page
+cannot reach the image. `.htmlvalidate.json` turns off three stylistic rules the
+existing pages trip on; structural errors stay fatal.
 
 ## Local preview
 
