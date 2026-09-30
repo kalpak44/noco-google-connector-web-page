@@ -1,7 +1,7 @@
 # ── validate stage: reject malformed markup before it can be served ──────────
 # runtime copies the pages from here rather than from the build context, which
 # is what forces this stage to run — BuildKit skips a stage nothing depends on.
-FROM node:22-alpine AS validate
+FROM node:25-alpine AS validate
 WORKDIR /src
 COPY .htmlvalidate.json ./
 COPY public/ ./public/
