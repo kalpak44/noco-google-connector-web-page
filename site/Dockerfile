@@ -26,10 +26,12 @@ LABEL org.opencontainers.image.title="noco-google-connector-web-page" \
 # Remove default config; install wget for health check
 RUN rm /etc/nginx/conf.d/default.conf
 
-# CVE-2026-93990: the pinned nginx base image still ships libexpat 2.8.4-r0,
-# which alpine 3.24 has already fixed as 2.8.5-r0. Upgrade that single package
-# so the vulnerability does not ship while we wait for a rebuilt base image.
-RUN apk upgrade --no-cache libexpat
+# The pinned nginx base image still ships two packages that alpine 3.24 has
+# already fixed. Upgrade just those packages so the vulnerabilities do not ship
+# while we wait for a rebuilt base image:
+#   CVE-2026-93990  libexpat  2.8.4-r0  -> 2.8.5-r0
+#   CVE-2026-46675  libpng    1.6.58-r1 -> 1.6.59-r0
+RUN apk upgrade --no-cache libexpat libpng
 
 # Custom nginx config
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
