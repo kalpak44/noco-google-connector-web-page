@@ -35,12 +35,16 @@ RUN rm /etc/nginx/conf.d/default.conf
 #   CVE-2026-58055  nghttp2-libs 1.69.0-r0 -> 1.70.0-r0
 #   CVE-2026-85091  zlib        1.3.2-r0  -> 1.3.2-r1
 #   CVE-2026-4775   tiff        4.7.1-r0  -> 4.7.2-r0
+#   CVE-2026-111497 brotli-libs 1.2.0-r1  -> 1.2.1-r0
+#   CVE-2026-92392  curl        8.22.0-r0 -> 8.23.0-r0
+#   CVE-2026-92392  libcurl     8.22.0-r0 -> 8.23.0-r0
 # The 2026-09-29 openssl advisory (High: CVE-2026-54873, CVE-2026-72897,
 # CVE-2026-84782, CVE-2026-84784; plus CVE-2026-35189, CVE-2026-35191,
 # CVE-2026-42772, CVE-2026-54872, CVE-2026-54875, CVE-2026-75804,
 # CVE-2026-75805, CVE-2026-75806, CVE-2026-77696) is fixed in 3.5.9-r0:
 #   CVE-2026-54873  libcrypto3/libssl3 3.5.8-r0 -> 3.5.9-r0
-RUN apk upgrade --no-cache libexpat libpng pcre2 nghttp2-libs zlib tiff libcrypto3 libssl3
+RUN apk upgrade --no-cache libexpat libpng pcre2 nghttp2-libs zlib tiff libcrypto3 libssl3 \
+    brotli-libs curl libcurl
 
 # Custom nginx config
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
