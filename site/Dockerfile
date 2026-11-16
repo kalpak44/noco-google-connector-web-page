@@ -38,13 +38,15 @@ RUN rm /etc/nginx/conf.d/default.conf
 #   CVE-2026-111497 brotli-libs 1.2.0-r1  -> 1.2.1-r0
 #   CVE-2026-92392  curl        8.22.0-r0 -> 8.23.0-r0
 #   CVE-2026-92392  libcurl     8.22.0-r0 -> 8.23.0-r0
+#   CVE-2025-10911, CVE-2026-87636, CVE-2026-9947, CVE-2026-125350
+#                   libxslt     1.1.43-r3 -> 1.1.43-r4
 # The 2026-09-29 openssl advisory (High: CVE-2026-54873, CVE-2026-72897,
 # CVE-2026-84782, CVE-2026-84784; plus CVE-2026-35189, CVE-2026-35191,
 # CVE-2026-42772, CVE-2026-54872, CVE-2026-54875, CVE-2026-75804,
 # CVE-2026-75805, CVE-2026-75806, CVE-2026-77696) is fixed in 3.5.9-r0:
 #   CVE-2026-54873  libcrypto3/libssl3 3.5.8-r0 -> 3.5.9-r0
 RUN apk upgrade --no-cache libexpat libpng pcre2 nghttp2-libs zlib tiff libcrypto3 libssl3 \
-    brotli-libs curl libcurl
+    brotli-libs curl libcurl libxslt
 
 # Custom nginx config
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
